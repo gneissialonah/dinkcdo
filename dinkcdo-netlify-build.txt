@@ -16,28 +16,23 @@
       <a href="my‑bookings‑calendar.html">My bookings</a>
     </nav>
   </header>
-
   <main class="home‑container">
     <h1>Find your court. Own your game.</h1>
     <p>Discover pickleball courts around Cagayan de Oro, compare open timeslots, and book your next game from one place.</p>
-
     <div class="search‑bar">
       <input type="text" placeholder="Search court or area">
       <input type="date">
       <input type="number" min="1" placeholder="Number of courts" class="court‑filter‑input">
       <button class="btn‑search">Find a court</button>
     </div>
-
     <section class="explore‑courts">
       <h2>Explore CDO courts</h2>
       <div id="court‑list"></div>
     </section>
   </main>
-
   <script src="js/booking‑logic.js"></script>
 </body>
 </html>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +53,6 @@
       <a href="my‑bookings‑calendar.html">My bookings</a>
     </nav>
   </header>
-
   <div class="search‑bar">
     <input type="text" placeholder="Search court or area">
     <input type="date">
@@ -66,17 +60,14 @@
     <button class="btn‑search">Find a court</button>
     <button class="btn‑stop‑track" onclick="stopLocationTracking()">Stop Tracking</button>
   </div>
-
   <main>
     <div id="map‑container" style="height:70vh;width:100%;"></div>
     <p class="map‑note">⚠️ Court pins will appear once venue GPS details are verified & added.</p>
   </main>
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/map‑script.js"></script>
 </body>
 </html>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,7 +131,6 @@
 <script src="js/booking‑logic.js"></script>
 </body>
 </html>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -168,7 +158,6 @@
 <script src="js/booking‑logic.js"></script>
 </body>
 </html>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -209,7 +198,6 @@
     <p class="fee‑note">💡 A 3% service fee will be added on top of these rates for players. You receive your full base rate for every booking.</p>
     <button class="btn‑save">Save Venue Details</button>
   </section>
-
   <section class="calendar‑sync">
     <h3>Sync External Booking Calendar</h3>
     <p>Paste your public iCal / booking feed URL to import reservations from other apps</p>
@@ -217,12 +205,10 @@
     <button class="btn‑sync">Sync Now</button>
     <p class="prototype‑note">⚠️ Preview only — live automatic sync will be enabled in later update</p>
   </section>
-
   <section class="owner‑calendar">
     <h3>My Booking Calendar Preview</h3>
     <div id="owner‑calendar‑view"></div>
   </section>
-
   <section class="payout‑summary">
     <h3>Earnings Preview</h3>
     <p>Total Court Earnings (to be credited to you): ₱0.00</p>
@@ -233,7 +219,6 @@
 <script src="js/owner‑logic.js"></script>
 </body>
 </html>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -270,7 +255,6 @@
   </main>
 </body>
 </html>
-
 * { box‑sizing: border‑box; font‑family: sans‑serif; margin:0; padding:0; }
 body { line‑height:1.5; color:#222; background:#f8f9fa; }
 .site‑header { background:#0F4C81; color:white; padding:1rem; display:flex; justify‑content:space‑between; align‑items:center; flex‑wrap:wrap; }
@@ -295,7 +279,6 @@ nav a.active { font‑weight:bold; text‑underline:underline; }
 .edit‑venue input, .calendar‑sync input { width:100%; padding:0.6rem; margin‑top:0.3rem; border:1px solid #ccc; border‑radius:4px; }
 .fee‑note, .prototype‑note, .payment‑note, .map‑note { font‑size:0.9rem; margin‑top:0.6rem; color:#444; }
 #map‑container { border‑radius:8px; margin:1rem; }
-
 // DinkCDO Core Booking Logic
 // Settings: Operating hours = 12AM‑11PM; show only available slots; 3% commission (added on top)
 const SETTINGS = {
@@ -303,18 +286,16 @@ const SETTINGS = {
   endHour: 23,  // 11 PM (23:00)
   commissionRate: 0.03 // UPDATED: 3% platform service fee
 };
-
 // Sample venue data (dynamic per owner‑registered court count)
 const venues = [
-  {
-    id: "venue‑1",
+  { 
+   id: "venue‑1",
     name: "Pickle World Limketkai",
     totalCourts: 3,
     baseFeePerHour: 500,
     bookings: {} // stored time‑slot bookings
   }
 ];
-
 // Generate hourly time slots (0‑23)
 function generateTimeSlots() {
   let slots = [];
@@ -323,7 +304,6 @@ function generateTimeSlots() {
   }
   return slots;
 }
-
 // Calculate available courts per time slot → return only slots with >0 available
 function getAvailableSlots(venue) {
   const allSlots = generateTimeSlots();
@@ -343,7 +323,6 @@ function getAvailableSlots(venue) {
   });
   return availableList;
 }
-
 // Render venue list + available slots (only show available times)
 function renderCourts() {
   const container = document.getElementById("court‑list");
@@ -370,7 +349,6 @@ function renderCourts() {
     container.appendChild(venueDiv);
   });
 }
-
 function formatHour(h) {
   if(h === 0) return "12:00 AM‑1:00 AM";
   if(h < 11) return `${h}:00 AM‑${h+1}:00 AM`;
@@ -379,13 +357,10 @@ function formatHour(h) {
   if(h < 23) return `${h‑12}:00 PM‑${h‑11}:00 PM`;
   return "11:00 PM‑12:00 AM";
 }
-
 // Initialize on load
 window.addEventListener("DOMContentLoaded", renderCourts);
-
 // owner‑logic.js — DinkCDO Court Owner Dashboard Logic
 // Features: save venue
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -416,7 +391,6 @@ window.addEventListener("DOMContentLoaded", renderCourts);
     <a href="owners‑dashboard.html">For Court Owners</a>
   </nav>
 </header>
-
 <main class="chat‑container">
   <div class="chat‑header">
     <h3>Chat: Pickle World Limketkai</h3>
@@ -432,20 +406,16 @@ window.addEventListener("DOMContentLoaded", renderCourts);
     <button class="btn‑send" onclick="sendMessage()">Send</button>
   </div>
 </main>
-
 <script src="js/chat‑logic.js"></script>
 </body>
 </html>
-
 // DinkCDO Player‑Owner Chat Logic (Prototype)
 let chatWindow = document.getElementById("chat‑window");
-
 // Send player message
 function sendMessage() {
   const input = document.getElementById("chat‑message");
   const text = input.value.trim();
   if (!text) return;
-
   // Add player bubble
   chatWindow.innerHTML += `
     <div class="msg‑player">
@@ -454,7 +424,6 @@ function sendMessage() {
   `;
   input.value = "";
   scrollChatToBottom();
-
   // Simulate owner auto‑reply (for demo only)
   setTimeout(() => {
     chatWindow.innerHTML += `
@@ -465,11 +434,9 @@ function sendMessage() {
     scrollChatToBottom();
   }, 1200);
 }
-
 function scrollChatToBottom() {
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
-
 // Prevent HTML injection (basic escape)
 function escapeHtml(str) {
   return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));

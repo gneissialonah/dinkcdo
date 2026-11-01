@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <title>DinkCDO | Cagayan de Oro Pickleball Booking</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header class="site‑header">
+    <div class="logo">DinkCDO</div>
+    <nav>
+      <a href="index.html" class="active">Find courts</a>
+      <a href="how‑it‑works.html">How it works</a>
+      <a href="owners‑dashboard.html">For court owners</a>
+      <a href="my‑bookings‑calendar.html">My bookings</a>
+    </nav>
+  </header>
+
+  <main class="home‑container">
+    <h1>Find your court. Own your game.</h1>
+    <p>Discover pickleball courts around Cagayan de Oro, compare open timeslots, and book your next game from one place.</p>
+
+    <div class="search‑bar">
+      <input type="text" placeholder="Search court or area">
+      <input type="date">
+      <input type="number" min="1" placeholder="Number of courts" class="court‑filter‑input">
+      <button class="btn‑search">Find a court</button>
+    </div>
+
+    <section class="explore‑courts">
+      <h2>Explore CDO courts</h2>
+      <div id="court‑list"></div>
+    </section>
+  </main>
+
+  <script src="js/booking‑logic.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <title>Find Courts | DinkCDO</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+  <header class="site‑header">
+    <div class="logo">DinkCDO</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="find‑courts.html" class="active">Find courts</a>
+      <a href="how‑it‑works.html">How it works</a>
+      <a href="owners‑dashboard.html">For court owners</a>
+      <a href="my‑bookings‑calendar.html">My bookings</a>
+    </nav>
+  </header>
+
+  <div class="search‑bar">
+    <input type="text" placeholder="Search court or area">
+    <input type="date">
+    <input type="number" min="1" placeholder="Number of courts" class="court‑filter‑input">
+    <button class="btn‑search">Find a court</button>
+    <button class="btn‑stop‑track" onclick="stopLocationTracking()">Stop Tracking</button>
+  </div>
+
+  <main>
+    <div id="map‑container" style="height:70vh;width:100%;"></div>
+    <p class="map‑note">⚠️ Court pins will appear once venue GPS details are verified & added.</p>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/map‑script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <title>Book | DinkCDO</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="site‑header">
+  <div class="logo">DinkCDO</div>
+  <nav class="venue‑tabs">
+    <a href="index.html">Home</a>
+    <a href="#" class="active">Book</a>
+    <a href="#">Open Play</a>
+    <a href="#">Feed</a>
+  </nav>
+</header>
+<div class="multi‑day‑banner">✨ Multi‑Day Booking Enabled<br>Book across multiple dates in a single reservation.</div>
+<div class="date‑selector">
+  <span id="current‑date">Sun, Nov 1 <span class="tag‑today">Today</span></span>
+  <button>&lt;</button>
+  <button class="btn‑calendar">📅</button>
+  <button>&gt;</button>
+</div>
+<main class="booking‑grid‑container">
+  <div id="booking‑grid"></div>
+  <div class="status‑legend">
+    <span>⚪ Available</span>
+    <span>🔵 Selected</span>
+    <span>🟢 Your Booking</span>
+    <span>⚫ Booked</span>
+    <span>🔵 Open Play</span>
+    <span>🟣 Coaching</span>
+    <span>🟡 Pending</span>
+    <span>🔴 Unavailable</span>
+    <span>🟠 Pasalo</span>
+    <span>🟣 Matchmaking</span>
+  </div>
+  <section class="checkout‑summary">
+    <h3>Booking Payment Summary</h3>
+    <div class="breakdown‑row">
+      <span>Court Rental (goes to venue owner)</span>
+      <span>₱500.00</span>
+    </div>
+    <div class="breakdown‑row">
+      <span>DinkCDO Service Fee (3%)</span>
+      <span>₱15.00</span>
+    </div>
+    <div class="breakdown‑row total">
+      <span>Total Due</span>
+      <span>₱515.00</span>
+    </div>
+    <h4>Select Payment Method (Online only)</h4>
+    <label><input type="radio" name="pay‑method" value="gcash" checked> GCash</label>
+    <label><input type="radio" name="pay‑method" value="maya"> Maya (Paymaya)</label>
+    <label><input type="radio" name="pay‑method" value="debit"> Debit Card</label>
+    <button class="btn‑confirm">Confirm Booking & Pay</button>
+  </section>
+</main>
+<script src="js/booking‑logic.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <title>My Bookings | DinkCDO</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="site‑header">
+  <div class="logo">DinkCDO</div>
+  <nav>
+    <a href="index.html">Find courts</a>
+    <a href="how‑it‑works.html">How it works</a>
+    <a href="owners‑dashboard.html">For court owners</a>
+    <a href="my‑bookings‑calendar.html" class="active">My bookings</a>
+  </nav>
+</header>
+<main class="calendar‑container">
+  <h2>My Bookings Calendar</h2>
+  <div id="player‑calendar‑view">
+    <p>Your upcoming bookings will appear here.</p>
+  </div>
+</main>
+<script src="js/booking‑logic.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF‑8">
+<meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+<title>DinkCDO | Court Owner Dashboard</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="site‑header">
+  <div class="logo">DinkCDO</div>
+  <nav>
+    <a href="index.html">Player Home</a>
+    <a href="owners‑dashboard.html" class="active">Owner Dashboard</a>
+    <a href="#">Log Out</a>
+  </nav>
+</header>
+<main class="owner‑container">
+  <h2>My Venue Profile & Settings</h2>
+  <section class="edit‑venue">
+    <h3>Basic Court Specifications</h3>
+    <label>Venue Name:</label>
+    <input type="text" id="venue‑name" placeholder="e.g. Pickle World Limketkai">
+
+    <label>Total number of courts:</label>
+    <input type="number" id="total‑courts" min="1" value="1">
+
+    <h3>Set Hourly Rates by Time Block (₱ / hour)</h3>
+    <label>AM (12 AM‑11 AM):</label>
+    <input type="number" id="rate‑am" min="0" placeholder="e.g. 400">
+
+    <label>PM (12 PM‑5 PM):</label>
+    <input type="number" id="rate‑pm" min="0" placeholder="e.g. 450">
+
+    <label>Evening (6 PM‑11 PM):</label>
+    <input type="number" id="rate‑evening" min="0" placeholder="e.g. 500">
+
+    <p class="fee‑note">💡 A 3% service fee will be added on top of these rates for players. You receive your full base rate for every booking.</p>
+    <button class="btn‑save">Save Venue Details</button>
+  </section>
+
+  <section class="calendar‑sync">
+    <h3>Sync External Booking Calendar</h3>
+    <p>Paste your public iCal / booking feed URL to import reservations from other apps</p>
+    <input type="url" id="calendar‑sync‑url" placeholder="Paste external calendar link here">
+    <button class="btn‑sync">Sync Now</button>
+    <p class="prototype‑note">⚠️ Preview only — live automatic sync will be enabled in later update</p>
+  </section>
+
+  <section class="owner‑calendar">
+    <h3>My Booking Calendar Preview</h3>
+    <div id="owner‑calendar‑view"></div>
+  </section>
+
+  <section class="payout‑summary">
+    <h3>Earnings Preview</h3>
+    <p>Total Court Earnings (to be credited to you): ₱0.00</p>
+    <p>Total 3% Service Fee (to DinkCDO): ₱0.00</p>
+    <p class="payment‑note">All bookings require online payment via GCash, Maya or Debit Card — no pay‑at‑venue option.</p>
+  </section>
+</main>
+<script src="js/owner‑logic.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <title>How It Works | DinkCDO</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header class="site‑header">
+    <div class="logo">DinkCDO</div>
+    <nav>
+      <a href="index.html">Find courts</a>
+      <a href="how‑it‑works.html" class="active">How it works</a>
+      <a href="owners‑dashboard.html">For court owners</a>
+      <a href="my‑bookings‑calendar.html">My bookings</a>
+    </nav>
+  </header>
+  <main class="info‑container">
+    <h2>How DinkCDO Works</h2>
+    <h3>For Players</h3>
+    <ul>
+      <li>Search pickleball courts around Cagayan de Oro</li>
+      <li>Filter by number of courts you want to book</li>
+      <li>Book available time slots (12 AM‑11 PM, only available times shown)</li>
+      <li>Pay online via GCash, Maya or Debit Card (3% platform service fee added)</li>
+    </ul>
+    <h3>For Court Owners</h3>
+    <ul>
+      <li>Create your venue profile & set your own hourly rates</li>
+      <li>Sync bookings from other calendar apps</li>
+      <li>Receive full base rental amount for every booking</li>
+    </ul>
+  </main>
+</body>
+</html>
+
+* { box‑sizing: border‑box; font‑family: sans‑serif; margin:0; padding:0; }
+body { line‑height:1.5; color:#222; background:#f8f9fa; }
+.site‑header { background:#0F4C81; color:white; padding:1rem; display:flex; justify‑content:space‑between; align‑items:center; flex‑wrap:wrap; }
+.logo { font‑weight:bold; font‑size:1.4rem; }
+nav a { color:white; text‑decoration:none; margin:0 0.6rem; }
+nav a.active { font‑weight:bold; text‑underline:underline; }
+.home‑container, .info‑container, .owner‑container, .calendar‑container { max‑width:1000px; margin:1.5rem auto; padding:0 1rem; }
+.search‑bar { display:flex; gap:0.6rem; flex‑wrap:wrap; margin:1.2rem 0; align‑items:center; }
+.search‑bar input { padding:0.6rem; border:1px solid #ccc; border‑radius:4px; flex:1; min‑width:140px; }
+.btn‑search, .btn‑save, .btn‑sync, .btn‑confirm, .btn‑stop‑track { background:#0F4C81; color:white; border:none; padding:0.6rem 1rem; border‑radius:4px; cursor:pointer; }
+.venue‑card { background:white; padding:1rem; border‑radius:8px; box‑shadow:0 1px 3px #0002; margin‑bottom:1rem; }
+.time‑slot { padding:0.5rem; background:#e8f4fc; border‑radius:4px; margin:0.4rem 0; }
+.multi‑day‑banner { background:#fff8cc; padding:1rem; margin:1rem; border‑radius:8px; }
+.date‑selector { display:flex; gap:0.5rem; align‑items:center; margin:0 1rem 1rem; }
+.booking‑grid‑container { padding:0 1rem; }
+.status‑legend { display:flex; flex‑wrap:wrap; gap:0.4rem; margin:1rem 0; font‑size:0.9rem; }
+.checkout‑summary { background:#f0f7ff; padding:1rem; border‑radius:8px; margin‑1.5rem 0; }
+.breakdown‑row { display:flex; justify‑content:space‑between; margin:0.4rem 0; }
+.breakdown‑row.total { font‑weight:bold; margin‑top:0.6rem; padding‑top:0.6rem; border‑top:1px solid #bbb; }
+.edit‑venue, .calendar‑sync, .owner‑calendar, .payout‑summary { background:white; padding:1.2rem; border‑radius:8px; box‑shadow:0 1px 3px #0002; margin‑bottom:1.2rem; }
+.edit‑venue label { display:block; margin‑top:0.8rem; }
+.edit‑venue input, .calendar‑sync input { width:100%; padding:0.6rem; margin‑top:0.3rem; border:1px solid #ccc; border‑radius:4px; }
+.fee‑note, .prototype‑note, .payment‑note, .map‑note { font‑size:0.9rem; margin‑top:0.6rem; color:#444; }
+#map‑container { border‑radius:8px; margin:1rem; }
+
+// DinkCDO Core Booking Logic
+// Settings: Operating hours = 12AM‑11PM; show only available slots; 3% commission (added on top)
+const SETTINGS = {
+  startHour: 0, // 12 AM (00:00)
+  endHour: 23,  // 11 PM (23:00)
+  commissionRate: 0.03 // UPDATED: 3% platform service fee
+};
+
+// Sample venue data (dynamic per owner‑registered court count)
+const venues = [
+  {
+    id: "venue‑1",
+    name: "Pickle World Limketkai",
+    totalCourts: 3,
+    baseFeePerHour: 500,
+    bookings: {} // stored time‑slot bookings
+  }
+];
+
+// Generate hourly time slots (0‑23)
+function generateTimeSlots() {
+  let slots = [];
+  for(let h = SETTINGS.startHour; h <= SETTINGS.endHour; h++) {
+    slots.push(h);
+  }
+  return slots;
+}
+
+// Calculate available courts per time slot → return only slots with >0 available
+function getAvailableSlots(venue) {
+  const allSlots = generateTimeSlots();
+  const availableList = [];
+
+  allSlots.forEach(hour => {
+    const booked = venue.bookings[hour] || 0;
+    const available = venue.totalCourts - booked;
+    if(available > 0) {
+      availableList.push({
+        hour: hour,
+        availableCourts: available,
+        baseFee: venue.baseFeePerHour,
+        totalPrice: (venue.baseFeePerHour * (1 + SETTINGS.commissionRate)).toFixed(2)
+      });
+    }
+  });
+  return availableList;
+}
+
+// Render venue list + available slots (only show available times)
+function renderCourts() {
+  const container = document.getElementById("court‑list");
+  if(!container) return;
+  container.innerHTML = "";
+
+  venues.forEach(venue => {
+    const venueDiv = document.createElement("div");
+    venueDiv.className = "venue‑card";
+    const slots = getAvailableSlots(venue);
+
+    let slotHtml = "";
+    slots.forEach(s => {
+      const timeLabel = formatHour(s.hour);
+      slotHtml += `<div class="time‑slot">${timeLabel} | ${s.availableCourts} court(s) available | ₱${s.totalPrice}</div>`;
+    });
+
+    venueDiv.innerHTML = `
+      <h3>${venue.name}</h3>
+      <p>Total courts: ${venue.totalCourts}</p>
+      <div class="slot‑list">${slotHtml || "<p>No available slots today</p>"}</div>
+      <a href="booking‑page.html?venue=${venue.id}" class="btn‑book">Book now</a>
+    `;
+    container.appendChild(venueDiv);
+  });
+}
+
+function formatHour(h) {
+  if(h === 0) return "12:00 AM‑1:00 AM";
+  if(h < 11) return `${h}:00 AM‑${h+1}:00 AM`;
+  if(h === 11) return "11:00 AM‑12:00 PM";
+  if(h === 12) return "12:00 PM‑1:00 PM";
+  if(h < 23) return `${h‑12}:00 PM‑${h‑11}:00 PM`;
+  return "11:00 PM‑12:00 AM";
+}
+
+// Initialize on load
+window.addEventListener("DOMContentLoaded", renderCourts);
+
+// owner‑logic.js — DinkCDO Court Owner Dashboard Logic
+// Features: save venue
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <title>DinkCDO | Chat Support</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .chat‑container { max‑width: 700px; margin: 1.5rem auto; background: #fff; border‑radius: 8px; box‑shadow: 0 1px 4px #0002; }
+    .chat‑header { background: #0F4C81; color: white; padding: 1rem; border‑radius: 8px 8px 0 0; }
+    .chat‑window { height: 420px; padding: 1rem; overflow‑y: auto; background: #f7f9fc; }
+    .msg‑player { text‑align: right; margin: 0.6rem 0; }
+    .msg‑owner { text‑align: left; margin: 0.6rem 0; }
+    .bubble‑player { display: inline‑block; background: #0F4C81; color: white; padding: 0.6rem 0.9rem; border‑radius: 16px 16px 2px 16px; max‑width: 75%; }
+    .bubble‑owner { display: inline‑block; background: #e2e8f0; color: #222; padding: 0.6rem 0.9rem; border‑radius: 16px 16px 16px 2px; max‑width: 75%; }
+    .chat‑input‑area { display: flex; gap: 0.5rem; padding: 1rem; border‑top: 1px solid #ddd; }
+    #chat‑message { flex: 1; padding: 0.6rem; border: 1px solid #ccc; border‑radius: 20px; }
+    .btn‑send { background: #0F4C81; color: white; border: none; padding: 0.6rem 1.2rem; border‑radius: 20px; cursor: pointer; }
+  </style>
+</head>
+<body>
+<header class="site‑header">
+  <div class="logo">DinkCDO</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="my‑bookings‑calendar.html">My Bookings</a>
+    <a href="chat‑support.html" class="active">Chat with Venue</a>
+    <a href="owners‑dashboard.html">For Court Owners</a>
+  </nav>
+</header>
+
+<main class="chat‑container">
+  <div class="chat‑header">
+    <h3>Chat: Pickle World Limketkai</h3>
+    <small>For booking & venue‑related questions only</small>
+  </div>
+  <div class="chat‑window" id="chat‑window">
+    <div class="msg‑owner">
+      <div class="bubble‑owner">Hello! How can I help you today?</div>
+    </div>
+  </div>
+  <div class="chat‑input‑area">
+    <input type="text" id="chat‑message" placeholder="Type your message…">
+    <button class="btn‑send" onclick="sendMessage()">Send</button>
+  </div>
+</main>
+
+<script src="js/chat‑logic.js"></script>
+</body>
+</html>
+
+// DinkCDO Player‑Owner Chat Logic (Prototype)
+let chatWindow = document.getElementById("chat‑window");
+
+// Send player message
+function sendMessage() {
+  const input = document.getElementById("chat‑message");
+  const text = input.value.trim();
+  if (!text) return;
+
+  // Add player bubble
+  chatWindow.innerHTML += `
+    <div class="msg‑player">
+      <div class="bubble‑player">${escapeHtml(text)}</div>
+    </div>
+  `;
+  input.value = "";
+  scrollChatToBottom();
+
+  // Simulate owner auto‑reply (for demo only)
+  setTimeout(() => {
+    chatWindow.innerHTML += `
+      <div class="msg‑owner">
+        <div class="bubble‑owner">Thanks for your message — we will get back to you shortly.</div>
+      </div>
+    `;
+    scrollChatToBottom();
+  }, 1200);
+}
+
+function scrollChatToBottom() {
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+// Prevent HTML injection (basic escape)
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+}
